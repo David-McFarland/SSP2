@@ -1,0 +1,75 @@
+<html>
+<head>
+
+	<style>
+.draggable {
+  cursor: move;
+  position: relative;
+} 
+</style>
+</head>	
+
+
+  <body>
+    <form method="POST" action="/">
+      <input type="text" name="create1" placeholder="Name">
+      <input type="text" name="create2" placeholder="Age">
+      <input type="submit" value="Add">
+    </form>
+
+
+    <form method="POST" action="/">
+      <input type="text" name="update1" placeholder="Id">
+      <input type="text" name="update2" placeholder="New Name">
+      <input type="text" name="update3" placeholder="New Age">
+      <input type="submit" value="Update">
+    </form>
+
+
+
+
+    <form method="POST" action="/">
+      <input type="text" name="delete1" placeholder="Id">
+      <input type="submit" value="Delete">
+    </form>
+    <h1>Students</h1>
+    <table>
+    	<tr>
+   	    	
+    	{% for i in range(6) %}
+    		  <th class="draggable" style = "padding-right: 30px">ID</th>
+		      <th class="draggable" style = "padding-right: 30px">NAME</th>
+		      <th class="draggable" style = "padding-right: 120px">Age</th>
+
+		{% endfor %}
+		</tr>
+	    {% for i in range(len) %}
+	    	{% if i % 6 == 0 %}
+	    	<tr>
+	    	{% endif %}
+	    	  <th class="draggable" style = "padding-right: 30px">{{books[i].id}}</th>
+		      <th class="draggable" style = "padding-right: 30px">{{books[i].name}}</th>
+		      <th class="draggable" style = "padding-right: 120px">{{books[i].age}}</th>
+		    {% if i % 6 == 5 or i == len-1 %}
+	    	</tr>
+	    	{% endif %}
+	    {% endfor %}
+
+	    
+	    
+	</table>
+	
+	<div style="text-align: center;">
+		{% for page in pages %}
+		   	{% if page == "..." %}
+		   		<code style="padding-right:40px" href=>...</code>
+		   	{% else %}
+			   	<a style="padding-right:40px" href="/{{page}}">{{page}}</a>
+		   	{% endif %}
+		{% endfor %}
+	</div>
+
+	<script src="{{url_for('static', filename='Drag.js')}}"></script>
+	<!--<script src="Drag.js"></script>-->
+  </body>
+</html>
